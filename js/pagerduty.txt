@@ -1,0 +1,75 @@
+pairs in array that add up to 100.
+Check in brackets are properly closed. (First only (), then extend it to include {} and [])
+Search engine (Given a snapshot of web, how would I design a system to do simple search queries.N
+
+
+public class BalancedParanthesis {
+	
+    public static boolean isBalanced(String str) {
+    	
+    	Map<Character, Character> brackets = new HashMap<Character, Character>();
+    	brackets.put('[', ']');
+        brackets.put('{', '}');
+        brackets.put('(,' ')');
+    	
+        if (str.length() == 0) {
+            System.out.println("String is empty!");
+            return false;
+        }
+       
+        Stack<Character> stack = new Stack<Character>();
+        for (int i = 0; i < str.length(); i++) {
+
+        	//System.out.println("checking " +str.charAt(i));
+            if (brackets.containsKey(str.charAt(i))) { //just looking for key!
+
+                stack.push(str.charAt(i));
+                //System.out.println("True " +str.charAt(i));
+            
+            } else if(brackets.containsValue(str.charAt(i))) { //check if it is a value
+            	
+            	if (stack.empty() || (str.charAt(i) != brackets.get(stack.pop()))) { //make sure it matches what needs to be poped
+            		// System.out.println(str.charAt(i)+ "!=" + brackets.get(stack.pop()));
+            		return false;
+            	} 
+            }
+        }
+        return true;
+    } 
+ 
+    public static void main(String[] args) {
+    	System.out.println(isBalanced("{}([])"));//ture
+   	 	System.out.println("Next");
+        System.out.println(isBalanced("([}])")); //false
+   	 	System.out.println("Next");
+        System.out.println(isBalanced("([abcd])")); //true
+        System.out.println("Next");
+        System.out.println(isBalanced("()[]{}[][]")); //true
+    }
+}
+
+We sort the pages by their content and other factors.
+Algortithms that will help:
+	spelling, autocorrect, list of synonnoms
+also rank the results:
+	relivance, site quality, last updated,
+
+The select block tells the database which columns of data you want it to return. You must separate each column name with a comma. For example, if you wanted to find the celestial coordinates right ascension (ra) and declination (dec) of an object, the select block might read
+
+select
+ra, dec
+
+The from block specifies which table (or tables) you want to search. If you wanted to retrieve information from the specObj table, the from block would read
+
+from
+specObj
+
+The where block allows you to search for records with certain characteristics. Your list of characteristics must be separated by the word "AND". Suppose you wanted to limit your search to a patch of sky with ra between 194 and 195 degrees and dec between 2 and 3 degrees. To search only this patch of sky, your where block would read
+
+where
+ra BETWEEN 194 AND 195 AND
+dec BETWEEN 2 AND 3
+
+select Page
+from Web
+where Page = Relivance && Page = Page
